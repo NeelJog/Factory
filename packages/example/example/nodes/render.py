@@ -55,23 +55,31 @@ class RenderNode(Node):
             lamp_data = bpy.data.lights.new("light",type='SPOT')
             lamp_data.energy = 10
             lamp_object = bpy.data.objects.new("light 1",lamp_data)
-            lamp_object.location = (0.0, 0.0, 1.0)
+            lamp_object.location = (-11.172, 0.016807, 4.77417)
             scn.collection.objects.link(lamp_object)
 
             cam1 = bpy.data.cameras.new("Camera 1")
             cam_obj1 = bpy.data.objects.new("Camera 1", cam1)
-            max_height = 0.55
-            height = ctx.random.uniform(0.25, max_height)
-            y = math.sqrt(max_height**2 - height**2)
-            cam_obj1.location = (.15, y, height)
+            # max_height = 0.55
+            # max_height = 3.0
+            # # height = ctx.random.uniform(0.25, max_height)
+            # height = ctx.random.uniform(2.0, max_height)
+            # y = math.sqrt(max_height**2 - height**2)
+            # cam_obj1.location = (.15, y, height)
+            cam_obj1.location = (8.56409, -0.040545, 4.45953)
+            
+            cam_obj1.rotation_mode = "XYZ"
+            cam_obj1.rotation_euler[0] = math.radians(266)
+            cam_obj1.rotation_euler[1] = math.radians(180)
+            cam_obj1.rotation_euler[2] = math.radians(-93.3)
+
+            # camera_constraint = cam_obj1.constraints.new(type='TRACK_TO')
+            # floor = [o for o in scn.objects if 'Plane' in o.name][0]
+            # camera_constraint.target = floor
 
             scn.collection.objects.link(cam_obj1)
 
             scn.camera = cam_obj1
-
-            camera_constraint = cam_obj1.constraints.new(type='TRACK_TO')
-            floor = [o for o in scn.objects if 'Plane' in o.name][0]
-            camera_constraint.target = floor
 
             #Initialize an AnaScene.  This configures the Blender compositor and provides object annotations and metadata.
             #To create an AnaScene we need to send a blender scene and a view layer for annotations

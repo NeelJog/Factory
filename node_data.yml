@@ -1,0 +1,203 @@
+[
+  {
+    "alias": "Color Variation",
+    "inputs": [
+      {
+        "name": "Color",
+        "description": null,
+        "select": [
+          "<random>",
+          "Red",
+          "Orange",
+          "Yellow",
+          "Green",
+          "Blue",
+          "Indigo",
+          "Violet",
+          "White",
+          "Black"
+        ],
+        "default": "<random>"
+      },
+      {
+        "name": "Generators",
+        "description": "Object generator"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Generator",
+        "description": "Modified object generator"
+      }
+    ],
+    "tooltip": "Change the color variation between objects",
+    "category": "Modifiers",
+    "subcategory": "Color",
+    "color": "#B32424",
+    "name": "Color Variation"
+  },
+  {
+    "alias": "Drop Objects",
+    "inputs": [
+      {
+        "name": "Objects",
+        "description": "Objects to be dropped"
+      },
+      {
+        "name": "Warehouse Generator",
+        "description": "Warehouse that the boxes are in"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Objects of Interest",
+        "description": "The objects we want to annotate"
+      }
+    ],
+    "tooltip": "Drop the passed objects into the container",
+    "category": "Modifiers",
+    "subcategory": "Physics",
+    "color": "#B32424",
+    "name": "Drop Objects"
+  },
+  {
+    "alias": "Box1",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "Box1 Generator",
+        "description": "Object generator"
+      }
+    ],
+    "tooltip": "Box1 for factory",
+    "category": "Objects",
+    "subcategory": "Generators",
+    "color": "#246BB3",
+    "WarehouseNode": {
+      "alias": "Warehouse",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "Warehouse Generator",
+          "description": "Object generator"
+        }
+      ],
+      "category": "Objects",
+      "subcategory": "Generators",
+      "color": "#246BB3"
+    },
+    "name": "Box1"
+  },
+  {
+    "alias": "Random Placement",
+    "inputs": [
+      {
+        "name": "Object Generators",
+        "description": "A list of object generators"
+      },
+      {
+        "name": "Number of Objects",
+        "description": "Number of objects to create",
+        "default": 25
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Objects",
+        "description": "A list of objects"
+      }
+    ],
+    "tooltip": "Place objects in a scene",
+    "category": "Modifiers",
+    "subcategory": "Placement",
+    "color": "#B32424",
+    "name": "Random Placement"
+  },
+  {
+    "alias": "Render",
+    "inputs": [
+      {
+        "name": "Objects of Interest",
+        "description": "Objects to be annotated"
+      },
+      {
+        "name": "Width (px)",
+        "default": 1920,
+        "description": "Desired image width"
+      },
+      {
+        "name": "Height (px)",
+        "default": 1080,
+        "description": "Desired image height"
+      },
+      {
+        "name": "Calculate Obstruction",
+        "default": "F",
+        "description": "Enable obstrution calculation",
+        "select": [
+          "T",
+          "F"
+        ]
+      }
+    ],
+    "outputs": [],
+    "tooltip": "Render and image for the scene and create associated annotations and metadata",
+    "category": "Render",
+    "subcategory": "Image",
+    "color": "#24B324",
+    "name": "Render"
+  },
+  {
+    "alias": "Weight",
+    "inputs": [
+      {
+        "name": "Generator",
+        "description": "The generator to set the weight for"
+      },
+      {
+        "name": "Weight",
+        "description": "The weight to give the generator"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Generator",
+        "description": "The generator with the weight set"
+      }
+    ],
+    "tooltip": "Change the weight of a generator",
+    "category": "Modifiers",
+    "subcategory": "Branch",
+    "color": "#B324F0",
+    "name": "Weight"
+  },
+  {
+    "alias": "Random Int",
+    "inputs": [
+      {
+        "name": "low",
+        "description": "Lower boundary of the interval (inclusive)"
+      },
+      {
+        "name": "high",
+        "description": "Upper boundary of the interval (exclusive)"
+      },
+      {
+        "name": "size",
+        "default": null,
+        "description": "Output shape, e.g., [m, n, k] will draw m * n * k samples and a single value for None (default)"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "out",
+        "description": "Drawn samples from the interval"
+      }
+    ],
+    "tooltip": "Generate random integers from low (inclusive) to high (exclusive), see numpy.random.randint for details",
+    "category": "Values",
+    "subcategory": "Generators",
+    "color": "#B3B3B3",
+    "name": "Random Integer"
+  }
+]

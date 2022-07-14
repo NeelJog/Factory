@@ -45,201 +45,254 @@ class ExampleChannelObject(AnaObject):
         pass
 
 
-class BubblesObject(ExampleChannelObject):
+# class BubblesObject(ExampleChannelObject):
+#     """
+#     A class to represent the Bubbles AnaObject with a color method specific to the shader nodes of the blender file.
+#     """
+
+#     def color(self, color_type=None):
+#         # Change the bubbles bottle RGB Node
+#         try:
+#             if color_type == '<random>':
+#                 # ctx.random just np.random and retains the seed used for reproducibility
+#                 color_type = ctx.random.choice([c for c in COLORS.keys()])
+#                 while color_type in ['White', 'Black']:
+#                     color_type = ctx.random.choice([c for c in COLORS.keys()])
+
+#             mat = [m for m in self.root.material_slots if 'BubbleBottle' in m.name][0]
+#             # print([n.name for n in mat.material.node_tree.nodes])
+#             rgb_node = mat.material.node_tree.nodes['RGB']
+#             rgb_node.outputs[0].default_value = COLORS[color_type]
+#         except Exception as e:
+#             logger.error("{} in \"{}\": \"{}\"".format(type(e).__name__, type(self).__name__, e).replace("\n", ""))
+#             raise
+
+#     def setup_mask(self):
+#         mat = [m for m in self.root.material_slots if 'BubbleBottle' in m.name][0] # The first on is the bottle; second the lid
+#         mat.material.node_tree.nodes["Transparancy"].outputs[0].default_value = 100
+
+
+# class YoyoObject(ExampleChannelObject):
+#     """
+#     A class to represent the Yoyo AnaObject with a color method specific to the shader nodes of the blender file.
+#     """
+
+#     def color(self, color_type=None):
+#         # Change the YoYo specific RGB Node
+#         try:
+#             if color_type == '<random>':
+#                 color_type = ctx.random.choice([c for c in COLORS.keys()])
+#                 while color_type in ['White', 'Black']:
+#                     color_type = ctx.random.choice([c for c in COLORS.keys()])
+
+#             obj = self.root
+#             mat = obj.material_slots[0]  # there is only one material in the Yoyo
+#             rgb_node = mat.material.node_tree.nodes['RGB']
+#             rgb_node.outputs[0].default_value = COLORS[color_type]
+#         except Exception as e:
+#             logger.error("{} in \"{}\": \"{}\"".format(type(e).__name__, type(self).__name__, e).replace("\n", ""))
+#             raise
+
+
+# class SkateboardObject(ExampleChannelObject):
+#     """
+#     A class to represent the Skateboard AnaObject with a color method specific to the shader nodes of the blender file.
+#     """
+
+#     def color(self, color_type=None):
+#         # Change the Skateboard specific RGB Node
+#         try:
+#             if color_type == '<random>':
+#                 color_type = ctx.random.choice([c for c in COLORS.keys()])
+
+#             # Script in Blender: bpy.data.materials["Skateboard_Board"].node_tree.nodes["RGB"].outputs[0].default_value=...
+#             mat = [m for m in self.root.material_slots if 'Skateboard_Board' in m.name][0]
+#             rgb_node = mat.material.node_tree.nodes['RGB']
+#             rgb_node.outputs[0].default_value = COLORS[color_type]
+#         except Exception as e:
+#             logger.error("{} in \"{}\": \"{}\"".format(type(e).__name__, type(self).__name__, e).replace("\n", ""))
+#             raise
+
+
+# class PlayDohObject(ExampleChannelObject):
+#     """
+#     A class to represent the PlayDoh AnaObject with a color method specific to the shader nodes of the blender file.
+#     """
+
+#     def color(self, color_type=None):
+#         # Change the RGB Node for the Play-Doh lid
+#         try:
+#             if color_type == '<random>':
+#                 color_type = ctx.random.choice([c for c in COLORS.keys()])
+#                 while color_type in ['Yellow', 'Orange']:
+#                     color_type = ctx.random.choice([c for c in COLORS.keys()])
+
+#             # Script in Blender: bpy.data.materials["RenDoh"].node_tree.nodes["RGB.004"].outputs[0].default_value = ...
+#             mat = [m for m in self.root.material_slots if 'RenDoh' in m.name][0]
+#             rgb_node = mat.material.node_tree.nodes['RGB.004']
+#             rgb_node.outputs[0].default_value = COLORS[color_type]
+#         except Exception as e:
+#             logger.error("{} in \"{}\": \"{}\"".format(type(e).__name__, type(self).__name__, e).replace("\n", ""))
+#             raise
+
+class Box1Object(ExampleChannelObject):
     """
-    A class to represent the Bubbles AnaObject with a color method specific to the shader nodes of the blender file.
-    """
-
-    def color(self, color_type=None):
-        # Change the bubbles bottle RGB Node
-        try:
-            if color_type == '<random>':
-                # ctx.random just np.random and retains the seed used for reproducibility
-                color_type = ctx.random.choice([c for c in COLORS.keys()])
-                while color_type in ['White', 'Black']:
-                    color_type = ctx.random.choice([c for c in COLORS.keys()])
-
-            mat = [m for m in self.root.material_slots if 'BubbleBottle' in m.name][0]
-            # print([n.name for n in mat.material.node_tree.nodes])
-            rgb_node = mat.material.node_tree.nodes['RGB']
-            rgb_node.outputs[0].default_value = COLORS[color_type]
-        except Exception as e:
-            logger.error("{} in \"{}\": \"{}\"".format(type(e).__name__, type(self).__name__, e).replace("\n", ""))
-            raise
-
-    def setup_mask(self):
-        mat = [m for m in self.root.material_slots if 'BubbleBottle' in m.name][0] # The first on is the bottle; second the lid
-        mat.material.node_tree.nodes["Transparancy"].outputs[0].default_value = 100
-
-
-class YoyoObject(ExampleChannelObject):
-    """
-    A class to represent the Yoyo AnaObject with a color method specific to the shader nodes of the blender file.
-    """
-
-    def color(self, color_type=None):
-        # Change the YoYo specific RGB Node
-        try:
-            if color_type == '<random>':
-                color_type = ctx.random.choice([c for c in COLORS.keys()])
-                while color_type in ['White', 'Black']:
-                    color_type = ctx.random.choice([c for c in COLORS.keys()])
-
-            obj = self.root
-            mat = obj.material_slots[0]  # there is only one material in the Yoyo
-            rgb_node = mat.material.node_tree.nodes['RGB']
-            rgb_node.outputs[0].default_value = COLORS[color_type]
-        except Exception as e:
-            logger.error("{} in \"{}\": \"{}\"".format(type(e).__name__, type(self).__name__, e).replace("\n", ""))
-            raise
-
-
-class SkateboardObject(ExampleChannelObject):
-    """
-    A class to represent the Skateboard AnaObject with a color method specific to the shader nodes of the blender file.
-    """
-
-    def color(self, color_type=None):
-        # Change the Skateboard specific RGB Node
-        try:
-            if color_type == '<random>':
-                color_type = ctx.random.choice([c for c in COLORS.keys()])
-
-            # Script in Blender: bpy.data.materials["Skateboard_Board"].node_tree.nodes["RGB"].outputs[0].default_value=...
-            mat = [m for m in self.root.material_slots if 'Skateboard_Board' in m.name][0]
-            rgb_node = mat.material.node_tree.nodes['RGB']
-            rgb_node.outputs[0].default_value = COLORS[color_type]
-        except Exception as e:
-            logger.error("{} in \"{}\": \"{}\"".format(type(e).__name__, type(self).__name__, e).replace("\n", ""))
-            raise
-
-
-class PlayDohObject(ExampleChannelObject):
-    """
-    A class to represent the PlayDoh AnaObject with a color method specific to the shader nodes of the blender file.
-    """
-
-    def color(self, color_type=None):
-        # Change the RGB Node for the Play-Doh lid
-        try:
-            if color_type == '<random>':
-                color_type = ctx.random.choice([c for c in COLORS.keys()])
-                while color_type in ['Yellow', 'Orange']:
-                    color_type = ctx.random.choice([c for c in COLORS.keys()])
-
-            # Script in Blender: bpy.data.materials["RenDoh"].node_tree.nodes["RGB.004"].outputs[0].default_value = ...
-            mat = [m for m in self.root.material_slots if 'RenDoh' in m.name][0]
-            rgb_node = mat.material.node_tree.nodes['RGB.004']
-            rgb_node.outputs[0].default_value = COLORS[color_type]
-        except Exception as e:
-            logger.error("{} in \"{}\": \"{}\"".format(type(e).__name__, type(self).__name__, e).replace("\n", ""))
-            raise
-
-
-class BubblesNode(Node):
-    """
-    A class to represent the Bubbles node, a node that instantiates a generator for the Bubbles object.
-    """
-
-    def exec(self):
-        logger.info("Executing {}".format(self.name))
-        return {"Bubbles Bottle Generator": get_blendfile_generator("example", BubblesObject, "BubbleBottle")}
-
-
-class YoyoNode(Node):
-    """
-    A class to represent the Yoyo node, a node that instantiates a generator for the Yoyo object.
+    A class to represent the Box1 AnaObject with a color method specific to the shader nodes of the blender file.
     """
 
-    def exec(self):
-        logger.info("Executing {}".format(self.name))
-        return {"Yoyo Generator": get_blendfile_generator("example", YoyoObject, "YoYo")}
-
-
-class SkateboardNode(Node):
+class WarehouseObject(ExampleChannelObject):
     """
-    A class to represent the Skateboard node, a node that instantiates a generator for the Skateboard object.
+    A class to represent the Warehouse AnaObject.
     """
 
-    def exec(self):
-        logger.info("Executing {}".format(self.name))
-        return {"Skateboard Generator": get_blendfile_generator("example", SkateboardObject, "Skateboard")}
+# class Box2Object(ExampleChannelObject):
+#     """
+#     A class to represent the Box2 AnaObject with a color method specific to the shader nodes of the blender file.
+#     """
+
+# class Box3Object(ExampleChannelObject):
+#     """
+#     A class to represent the Box3 AnaObject with a color method specific to the shader nodes of the blender file.
+#     """
+
+# class BubblesNode(Node):
+#     """
+#     A class to represent the Bubbles node, a node that instantiates a generator for the Bubbles object.
+#     """
+
+#     def exec(self):
+#         logger.info("Executing {}".format(self.name))
+#         return {"Bubbles Bottle Generator": get_blendfile_generator("example", BubblesObject, "BubbleBottle")}
 
 
-class PlayDohNode(Node):
+# class YoyoNode(Node):
+#     """
+#     A class to represent the Yoyo node, a node that instantiates a generator for the Yoyo object.
+#     """
+
+#     def exec(self):
+#         logger.info("Executing {}".format(self.name))
+#         return {"Yoyo Generator": get_blendfile_generator("example", YoyoObject, "YoYo")}
+
+
+# class SkateboardNode(Node):
+#     """
+#     A class to represent the Skateboard node, a node that instantiates a generator for the Skateboard object.
+#     """
+
+#     def exec(self):
+#         logger.info("Executing {}".format(self.name))
+#         return {"Skateboard Generator": get_blendfile_generator("example", SkateboardObject, "Skateboard")}
+
+
+# class PlayDohNode(Node):
+#     """
+#     A class to represent the PlayDoh node, a node that instantiates a generator for the PlayDough object.
+#     """
+
+#     def exec(self):
+#         logger.info("Executing {}".format(self.name))
+#         return {"Play Dough Generator": get_blendfile_generator("example", PlayDohObject, "PlayDough")}
+
+
+# class RubikNode(Node):
+#     """
+#     A class to represent the Rubik node, a node that instantiates a generator for the Cube object.
+#     """
+
+#     def exec(self):
+#         logger.info("Executing {}".format(self.name))
+#         return {"Rubik's Cube Generator": get_blendfile_generator("example", ExampleChannelObject, "Cube")}
+
+
+# class MixedRubikNode(Node):
+#     """
+#     A class to represent the MixedRubik node, a node that instantiates a generator for the Mix Cube object.
+#     """
+
+#     def exec(self):
+#         logger.info("Executing {}".format(self.name))
+#         return {"Mixed Cube Generator": get_blendfile_generator("example", ExampleChannelObject, "Mix Cube")}
+
+class Box1Node(Node):
     """
-    A class to represent the PlayDoh node, a node that instantiates a generator for the PlayDough object.
-    """
-
-    def exec(self):
-        logger.info("Executing {}".format(self.name))
-        return {"Play Dough Generator": get_blendfile_generator("example", PlayDohObject, "PlayDough")}
-
-
-class RubikNode(Node):
-    """
-    A class to represent the Rubik node, a node that instantiates a generator for the Cube object.
-    """
-
-    def exec(self):
-        logger.info("Executing {}".format(self.name))
-        return {"Rubik's Cube Generator": get_blendfile_generator("example", ExampleChannelObject, "Cube")}
-
-
-class MixedRubikNode(Node):
-    """
-    A class to represent the MixedRubik node, a node that instantiates a generator for the Mix Cube object.
-    """
-
-    def exec(self):
-        logger.info("Executing {}".format(self.name))
-        return {"Mixed Cube Generator": get_blendfile_generator("example", ExampleChannelObject, "Mix Cube")}
-
-
-class ContainerNode(Node):
-    """
-    A class to represent the Container node, a node that instantiates a generator for the a container object.
-    """
-
-    def exec(self):
-        logger.info("Executing {}".format(self.name))
-
-        try:
-            # get node inputs
-            box_type = self.inputs["Container Type"][0]
-            if box_type == "<random>":
-                # select a random container
-                select_list = [portdef["select"] for portdef in self.schema["inputs"] if
-                               portdef.get('name') == "Container Type"][0]
-                select_list.remove("<random>")
-                box_type = ctx.random.choice(select_list)
-                while box_type in ['Tall Basket', 'Short Basket']:
-                    box_type = ctx.random.choice(select_list)
-        except Exception as e:
-            logger.error("{} in \"{}\": \"{}\"".format(type(e).__name__, type(self).__name__, e).replace("\n", ""))
-            raise
-
-        return {"Container Generator": get_blendfile_generator("example", AnaObject, box_type)}
-
-
-class FloorNode(Node):
-    """
-    A class to represent the Floor node, a node that instantiates a generator for the a floor object.
+    A class to represent the Box1 node, a node that instantiates a generator for the Box1 object.
     """
 
     def exec(self):
         logger.info("Executing {}".format(self.name))
+        return {"Box1 Generator": get_blendfile_generator("example", ExampleChannelObject, "Box1")}
 
-        try:
-            floor_type = self.inputs["Floor Type"][0]
-            if floor_type == "<random>":
-                # select a random floor
-                select_list = [portdef["select"] for portdef in self.schema["inputs"] if
-                               portdef.get('name') == "Floor Type"][0]
-                select_list.remove("<random>")
-                floor_type = ctx.random.choice(select_list)
-        except Exception as e:
-            logger.error("{} in \"{}\": \"{}\"".format(type(e).__name__, type(self).__name__, e).replace("\n", ""))
-            raise
+# class Box2Node(Node):
+#     """
+#     A class to represent the Box2 node, a node that instantiates a generator for the Box2 object.
+#     """
 
-        return {"Floor Generator": get_blendfile_generator("example", AnaObject, floor_type)}
+#     def exec(self):
+#         logger.info("Executing {}".format(self.name))
+#         return {"Box2 Generator": get_blendfile_generator("example", ExampleChannelObject, "Box2")}
+
+# class Box3Node(Node):
+#     """
+#     A class to represent the Box3 node, a node that instantiates a generator for the Box3 object.
+#     """
+
+#     def exec(self):
+#         logger.info("Executing {}".format(self.name))
+#         return {"Box3 Generator": get_blendfile_generator("example", ExampleChannelObject, "Box3")}
+
+# class ContainerNode(Node):
+#     """
+#     A class to represent the Container node, a node that instantiates a generator for the a container object.
+#     """
+
+#     def exec(self):
+#         logger.info("Executing {}".format(self.name))
+
+#         try:
+#             # get node inputs
+#             box_type = self.inputs["Container Type"][0]
+#             if box_type == "<random>":
+#                 # select a random container
+#                 select_list = [portdef["select"] for portdef in self.schema["inputs"] if
+#                                portdef.get('name') == "Container Type"][0]
+#                 select_list.remove("<random>")
+#                 box_type = ctx.random.choice(select_list)
+#                 while box_type in ['Tall Basket', 'Short Basket']:
+#                     box_type = ctx.random.choice(select_list)
+#         except Exception as e:
+#             logger.error("{} in \"{}\": \"{}\"".format(type(e).__name__, type(self).__name__, e).replace("\n", ""))
+#             raise
+
+#         return {"Container Generator": get_blendfile_generator("example", AnaObject, box_type)}
+
+# class FloorNode(Node):
+#     """
+#     A class to represent the Floor node, a node that instantiates a generator for the a floor object.
+#     """
+
+#     def exec(self):
+#         logger.info("Executing {}".format(self.name))
+
+#         try:
+#             floor_type = self.inputs["Floor Type"][0]
+#             if floor_type == "<random>":
+#                 # select a random floor
+#                 select_list = [portdef["select"] for portdef in self.schema["inputs"] if
+#                                portdef.get('name') == "Floor Type"][0]
+#                 select_list.remove("<random>")
+#                 floor_type = ctx.random.choice(select_list)
+#         except Exception as e:
+#             logger.error("{} in \"{}\": \"{}\"".format(type(e).__name__, type(self).__name__, e).replace("\n", ""))
+#             raise
+
+#         return {"Floor Generator": get_blendfile_generator("example", AnaObject, floor_type)}
+
+class WarehouseNode(Node):
+    """
+    A class to represent the Warehouse node, a node that instantiates a generator for the a warehouse object.
+    """
+
+    def exec(self):
+        logger.info("Executing {}".format(self.name))
+        return {"Warehouse Generator": get_blendfile_generator("example", ExampleChannelObject, "Warehouse")}

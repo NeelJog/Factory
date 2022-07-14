@@ -12,113 +12,166 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 schemas:
-  BubblesNode:
-    alias: Bubbles
+  # BubblesNode:
+  #   alias: Bubbles
+  #   inputs: []
+  #   outputs:
+  #   - name: Bubbles Bottle Generator
+  #     description: Object generator
+  #   tooltip: Bubbles bottle factory
+  #   category: Objects
+  #   subcategory: Generators
+  #   color: "#246BB3"
+
+  # YoyoNode:
+  #   alias: Yo-yo
+  #   inputs: []
+  #   outputs:
+  #   - name: Yoyo Generator
+  #     description: Object generator
+  #   tooltip: Yoyo factory
+  #   category: Objects
+  #   subcategory: Generators
+  #   color: "#246BB3"
+
+  # SkateboardNode:
+  #   alias: Skateboard
+  #   inputs: []
+  #   outputs:
+  #   - name: Skateboard Generator
+  #     description: Object generator
+  #   tooltip: Toy skateboard factory
+  #   category: Objects
+  #   subcategory: Generators
+  #   color: "#246BB3"
+
+  # PlayDohNode:
+  #   alias: Playdough
+  #   inputs: []
+  #   outputs:
+  #   - name: Play Dough Generator
+  #     description: Object generator
+  #   tooltip: Play dough tub factory
+  #   category: Objects
+  #   subcategory: Generators
+  #   color: "#246BB3"
+
+  # RubikNode:
+  #   alias: Rubik's Cube
+  #   inputs: []
+  #   outputs:
+  #   - name: Rubik's Cube Generator
+  #     description: Object generator
+  #   tooltip: Rubik's Cube factory
+  #   category: Objects
+  #   subcategory: Generators
+  #   color: "#246BB3"
+
+  # MixedRubikNode:
+  #   alias: Mix Cube
+  #   inputs: []
+  #   outputs:
+  #   - name: Mixed Cube Generator
+  #     description: Object generator
+  #   tooltip: Mixed up Rubik's Cube factory
+  #   category: Objects
+  #   subcategory: Generators
+  #   color: "#246BB3"
+
+  # TrialNode:
+  #   alias: Trial
+  #   inputs: []
+  #   outputs:
+  #   - name: Trial Generator
+  #     description: Object generator
+  #   tooltip: Trial for factory
+  #   category: Objects
+  #   subcategory: Objects
+
+  Box1Node:
+    alias: Box1
+    inputs: []
+    outputs: 
+    - name: Box1 Generator
+      description: Object generator
+    tooltip: Box1 for factory
+    category: Objects
+    subcategory: Generators
+    color: "#246BB3"
+
+  # Box2Node:
+  #   alias: Box2
+  #   inputs: []
+  #   outputs: 
+  #   - name: Box2 Generator
+  #     description: Object generator
+  #   tooltip: Box2 for factory
+  #   category: Objects
+  #   subcategory: Generators
+  #   color: "#246BB3"
+
+  # Box3Node:
+  #   alias: Box3
+  #   inputs: []
+  #   outputs: 
+  #   - name: Box3 Generator
+  #     description: Object generator
+  #   tooltip: Box3 for factory
+  #   category: Objects
+  #   subcategory: Generators
+  #   color: "#246BB3"
+
+  # ContainerNode:
+  #   alias: Container
+  #   inputs:
+  #   - name: Container Type
+  #     description: Type of container into which the objects are dropped
+  #     select:
+  #       - <random>
+  #       - Dark Wooden Box
+  #       - Light Wooden Box
+  #       - Clear Tub
+  #       - Orange Tub
+  #       - Green Tub
+  #       - Blue Tub
+  #       - Gray Tub
+  #       - Yellow Bowl
+  #       - Purple Bowl
+  #     default: <random>
+  #   outputs:
+  #   - name: Container Generator
+  #     description: Object generator
+  #   tooltip: Container factory
+  #   category: Objects
+  #   subcategory: Generators
+  #   color: "#246BB3"
+
+  # FloorNode:
+  #   alias: Floor
+  #   inputs:
+  #   - name: Floor Type
+  #     description: Type of floor the container sits on
+  #     select:
+  #       - <random>
+  #       - Tile
+  #       - Wood
+  #       - Granite
+  #       - Metal
+  #       - Rocks
+  #       - Cobbles
+  #     default: <random>
+  #   outputs:
+  #   - name: Floor Generator
+  #     description: Object generator
+  #   category: Objects
+  #   subcategory: Generators
+  #   color: "#246BB3"
+
+  WarehouseNode:
+    alias: Warehouse
     inputs: []
     outputs:
-    - name: Bubbles Bottle Generator
-      description: Object generator
-    tooltip: Bubbles bottle factory
-    category: Objects
-    subcategory: Generators
-    color: "#246BB3"
-
-  YoyoNode:
-    alias: Yo-yo
-    inputs: []
-    outputs:
-    - name: Yoyo Generator
-      description: Object generator
-    tooltip: Yoyo factory
-    category: Objects
-    subcategory: Generators
-    color: "#246BB3"
-
-  SkateboardNode:
-    alias: Skateboard
-    inputs: []
-    outputs:
-    - name: Skateboard Generator
-      description: Object generator
-    tooltip: Toy skateboard factory
-    category: Objects
-    subcategory: Generators
-    color: "#246BB3"
-
-  PlayDohNode:
-    alias: Playdough
-    inputs: []
-    outputs:
-    - name: Play Dough Generator
-      description: Object generator
-    tooltip: Play dough tub factory
-    category: Objects
-    subcategory: Generators
-    color: "#246BB3"
-
-  RubikNode:
-    alias: Rubik's Cube
-    inputs: []
-    outputs:
-    - name: Rubik's Cube Generator
-      description: Object generator
-    tooltip: Rubik's Cube factory
-    category: Objects
-    subcategory: Generators
-    color: "#246BB3"
-
-  MixedRubikNode:
-    alias: Mix Cube
-    inputs: []
-    outputs:
-    - name: Mixed Cube Generator
-      description: Object generator
-    tooltip: Mixed up Rubik's Cube factory
-    category: Objects
-    subcategory: Generators
-    color: "#246BB3"
-
-  ContainerNode:
-    alias: Container
-    inputs:
-    - name: Container Type
-      description: Type of container into which the objects are dropped
-      select:
-        - <random>
-        - Dark Wooden Box
-        - Light Wooden Box
-        - Clear Tub
-        - Orange Tub
-        - Green Tub
-        - Blue Tub
-        - Gray Tub
-        - Yellow Bowl
-        - Purple Bowl
-      default: <random>
-    outputs:
-    - name: Container Generator
-      description: Object generator
-    tooltip: Container factory
-    category: Objects
-    subcategory: Generators
-    color: "#246BB3"
-
-  FloorNode:
-    alias: Floor
-    inputs:
-    - name: Floor Type
-      description: Type of floor the container sits on
-      select:
-        - <random>
-        - Tile
-        - Wood
-        - Granite
-        - Metal
-        - Rocks
-        - Cobbles
-      default: <random>
-    outputs:
-    - name: Floor Generator
+    - name: Warehouse Generator
       description: Object generator
     category: Objects
     subcategory: Generators

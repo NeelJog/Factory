@@ -5,6 +5,9 @@ classes: # Categories for ML
   4: [none, RubiksCube]
   6: [none, Playdough]
   99: [none, Distractor]
+  7: [none, Box1]
+  # 8: [none, Box2]
+  # 9: [none, Box3]
 properties: # Ana metadata uses (from the package) ObjectGenerator.object_type
   obj['type'] == 'YoYo': 0
   obj['type'] == 'BubbleBottle': 1
@@ -12,3 +15,6 @@ properties: # Ana metadata uses (from the package) ObjectGenerator.object_type
   obj['type'] == 'Cube': 4
   obj['type'] == 'Mix Cube': 4
   obj['type'] == 'PlayDough': 6
+  obj['type'] == 'Box1': 7
+  # obj['type'] == 'Box2': 8
+  # obj['type'] == 'Box3': 9

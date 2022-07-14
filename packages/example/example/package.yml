@@ -22,78 +22,94 @@
 # package directory
 volumes:
   example: 'df8ad806-223b-4d56-a932-838da835ec62'
+  factory_temp: 'ee6968eb-5391-436c-8662-3818f559bf64'
 
 # Define objects.
 objects:
 
-  YoYo:
-    filename: example:LowPoly.blend
+  # YoYo:
+  #   filename: example:LowPoly.blend
 
-  BubbleBottle:
-    filename: example:LowPoly.blend
+  # BubbleBottle:
+  #   filename: example:LowPoly.blend
 
-  Skateboard:
-    filename: example:LowPoly.blend
+  # Skateboard:
+  #   filename: example:LowPoly.blend
 
-  Cube:
-    filename: example:LowPoly.blend
+  # Cube:
+  #   filename: example:LowPoly.blend
 
-  Mix Cube:
-    filename: example:LowPoly.blend
+  # Mix Cube:
+  #   filename: example:LowPoly.blend
 
-  PlayDough:
-    filename: example:LowPoly.blend
+  # PlayDough:
+  #   filename: example:LowPoly.blend
 
-  Light Wooden Box:
-    filename: example:containers.blend
+  # Light Wooden Box:
+  #   filename: example:containers.blend
 
-  Dark Wooden Box:
-    filename: example:containers.blend
+  # Dark Wooden Box:
+  #   filename: example:containers.blend
 
-  Blue Tub:
-    filename: example:containers.blend
+  # Blue Tub:
+  #   filename: example:containers.blend
 
-  Orange Tub:
-    filename: example:containers.blend
+  # Orange Tub:
+  #   filename: example:containers.blend
 
-  Green Tub:
-    filename: example:containers.blend
+  # Green Tub:
+  #   filename: example:containers.blend
 
-  Clear Tub:
-    filename: example:containers.blend
+  # Clear Tub:
+  #   filename: example:containers.blend
 
-  Gray Tub:
-    filename: example:containers.blend
+  # Gray Tub:
+  #   filename: example:containers.blend
 
-  Yellow Bowl:
-    filename: example:containers.blend
+  # Yellow Bowl:
+  #   filename: example:containers.blend
 
-  Purple Bowl:
-    filename: example:containers.blend
+  # Purple Bowl:
+  #   filename: example:containers.blend
 
-  Short Basket:
-    filename: example:containers.blend
+  # Short Basket:
+  #   filename: example:containers.blend
 
-  Tall Basket:
-    filename: example:containers.blend
+  # Tall Basket:
+  #   filename: example:containers.blend
 
-  Plane Floor:
-    filename: example:floors.blend
+  # Plane Floor:
+  #   filename: example:floors.blend
 
-  Tile:
-    filename: example:floors.blend
+  # Tile:
+  #   filename: example:floors.blend
 
-  Cobbles:
-    filename: example:floors.blend
+  # Cobbles:
+  #   filename: example:floors.blend
 
-  Wood:
-    filename: example:floors.blend
+  # Wood:
+  #   filename: example:floors.blend
 
-  Rocks:
-    filename: example:floors.blend
+  # Rocks:
+  #   filename: example:floors.blend
 
-  Granite:
-    filename: example:floors.blend
+  # Granite:
+  #   filename: example:floors.blend
 
-  Metal:
-    filename: example:floors.blend
+  # Metal:
+  #   filename: example:floors.blend
+
+  Warehouse:
+    filename: factory_temp:Warehouse.blend
+  
+  # Trial:
+  #   filename: factory_temp:Trial.blend
+  
+  Box1:
+    filename: factory_temp:Box1.blend
+  
+  # Box2:
+  #   filename: factory_temp:Box2.blend
+  
+  # Box3:
+  #   filename: factory_temp:Box3.blend

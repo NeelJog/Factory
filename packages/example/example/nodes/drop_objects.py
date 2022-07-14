@@ -32,12 +32,15 @@ class DropObjectsNode(Node):
             objects = self.inputs["Objects"][0]
 
             #Pick a link when more than one is provided
-            container_generator = CreateBranchGenerator(self.inputs["Container Generator"])
-            floor_generator = CreateBranchGenerator(self.inputs["Floor Generator"])
+            warehouse_generator = CreateBranchGenerator(self.inputs["Warehouse Generator"])
+            # container_generator = CreateBranchGenerator(self.inputs["Container Generator"])
+            # floor_generator = CreateBranchGenerator(self.inputs["Floor Generator"])
+            
 
             #Create the container and floor
-            container = container_generator.exec()
-            floor = floor_generator.exec()
+            warehouse = warehouse_generator.exec()
+            # container = container_generator.exec()
+            # floor = floor_generator.exec()
 
             #Let's make sure we have a rigid body world going.
             bpy.ops.rigidbody.world_add()
@@ -47,17 +50,17 @@ class DropObjectsNode(Node):
 
             sc.rigidbody_world.collection = collection
 
-            sc.rigidbody_world.collection.objects.link(container.root)
-            container.root.rigid_body.type = 'PASSIVE'
-            container.root.rigid_body.collision_shape = 'MESH'
-            container.root.rigid_body.use_margin = True
-            container.root.rigid_body.collision_margin = 0.001
+            # sc.rigidbody_world.collection.objects.link(container.root)
+            # container.root.rigid_body.type = 'PASSIVE'
+            # container.root.rigid_body.collision_shape = 'MESH'
+            # container.root.rigid_body.use_margin = True
+            # container.root.rigid_body.collision_margin = 0.001
 
-            sc.rigidbody_world.collection.objects.link(floor.root)
-            floor.root.rigid_body.type = 'PASSIVE'
-            floor.root.rigid_body.collision_shape = 'MESH'
-            floor.root.rigid_body.use_margin = True
-            floor.root.rigid_body.collision_margin = 0.001
+            # sc.rigidbody_world.collection.objects.link(floor.root)
+            # floor.root.rigid_body.type = 'PASSIVE'
+            # floor.root.rigid_body.collision_shape = 'MESH'
+            # floor.root.rigid_body.use_margin = True
+            # floor.root.rigid_body.collision_margin = 0.001
                 
             sc.rigidbody_world.steps_per_second = 150
             sc.rigidbody_world.solver_iterations = 150

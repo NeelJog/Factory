@@ -17,10 +17,12 @@ schemas:
     inputs:
     - name: Objects
       description: Objects to be dropped
-    - name: Container Generator
-      description: Container we should drop them into
-    - name: Floor Generator
-      description: Ground the container sits on
+    # - name: Container Generator
+    #   description: Container we should drop them into
+    # - name: Floor Generator
+    #   description: Ground the container sits on
+    - name: Warehouse Generator
+      description: Warehouse that the boxes are in
     outputs:
     - name: Objects of Interest
       description: The objects we want to annotate

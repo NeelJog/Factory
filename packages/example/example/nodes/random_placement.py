@@ -20,7 +20,6 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-
 class RandomPlacementClass(Node):
     """
     A class to represent the RandomPlacement node, a node that places objects in a scene.
@@ -37,19 +36,32 @@ class RandomPlacementClass(Node):
             object_number = min(200, int(self.inputs["Number of Objects"][0]))
 
             object_list = []
+            
+            locations = [-4, -2, 0, 2, 4]
+            locations_picked = []
 
             for ii in np.arange(object_number):
                 this_object = branch_generator.exec() #Picks a new branch from the inputs and executes it
                 object_list.append(this_object)
                 #.root is the actual blender object
-                this_object.root.location = (
-                    0.1*(ctx.random.random()-0.5),
-                    0.1*(ctx.random.random()-0.5),
-                    2+0.1*ii)
-                this_object.root.rotation_euler = (
-                    math.radians(ctx.random.uniform(0,360)),
-                    math.radians(ctx.random.uniform(0,360)),
-                    math.radians(ctx.random.uniform(0,360)))
+                
+                this_object.root.location[0] = -22
+                while (len(locations_picked) < len(locations)): # get a location that has not already been picked
+                    this_object.root.location[1] = np.random.choice(locations)
+                    if (this_object.root.location not in locations_picked):
+                        locations_picked.append(this_object.root.location)
+                        break
+                this_object.root.location[2] = 0.6
+                
+                    
+                # this_object.root.location = (
+                #     0.1*(ctx.random.random()-0.5),
+                #     0.1*(ctx.random.random()-0.5),
+                #     2+0.1*ii)
+                # this_object.root.rotation_euler = (
+                #     math.radians(ctx.random.uniform(0,360)),
+                #     math.radians(ctx.random.uniform(0,360)),
+                #     math.radians(ctx.random.uniform(0,360)))
 
         except Exception as e:
             logger.error("{} in \"{}\": \"{}\"".format(type(e).__name__, type(self).__name__, e).replace("\n", ""))
