@@ -1,0 +1,28 @@
+{
+    "filename": "0000000000-0-RGBCamera.png",
+    "channel": "example",
+    "version": "0.0.1",
+    "date": "2022-07-23T20:52:59.332539",
+    "objects": [
+        {
+            "id": 2,
+            "type": "Box1"
+        },
+        {
+            "id": 3,
+            "type": "Box1"
+        },
+        {
+            "id": 4,
+            "type": "Box1"
+        },
+        {
+            "id": 5,
+            "type": "Box1"
+        },
+        {
+            "id": 6,
+            "type": "Box1"
+        }
+    ]
+}

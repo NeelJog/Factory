@@ -37,11 +37,12 @@ class RenderNode(Node):
         logger.info("Executing {}".format(self.name))
 
         try:
-            #We do not expect more than one DropObjects node to be ported to here, but the input is still a list.
-            objects = self.inputs["Objects of Interest"][0]
+            # We do not expect more than one ObjectPlacement node to be ported to here, but 
+            # the input is still a list.
+            objects = self.inputs["Objects"][0]
 
+            # Start setting up the scene
             scn = bpy.context.scene
-
             bpy.ops.object.visual_transform_apply()
 
             sizeMax = 3000
@@ -49,36 +50,42 @@ class RenderNode(Node):
             scn.render.resolution_y = min(sizeMax, int(self.inputs["Height (px)"][0]))
 
 
-            #Let's add a lamp...This could be done in a separate node if desired.
+            #Let's add a few lamps...This could be done in a separate node if desired.
+            # The locations of the lamps will change based on the dimensions of the warehouse,
+            # so make sure to explore the warehouse in your blend file and choose locations
+            # that make sense.
             bpy.context.scene.world.light_settings.use_ambient_occlusion = True
 
-            lamp_data = bpy.data.lights.new("light",type='SPOT')
-            lamp_data.energy = 10
-            lamp_object = bpy.data.objects.new("light 1",lamp_data)
-            lamp_object.location = (-11.172, 0.016807, 4.77417)
-            scn.collection.objects.link(lamp_object)
+            lamp_1_data = bpy.data.lights.new("light",type='SPOT')
+            lamp_1_data.energy = 1000
+            lamp_1 = bpy.data.objects.new("Light 1",lamp_1_data)
+            lamp_1.location = (-25.53, -8.7679, 5.6029)
+            scn.collection.objects.link(lamp_1)
 
+            lamp_2_data = bpy.data.lights.new("light",type='SPOT')
+            lamp_2_data.energy = 1000
+            lamp_2 = bpy.data.objects.new("Light 2",lamp_2_data)
+            lamp_2.location = (-25.53, 8.7679, 5.6029)
+            scn.collection.objects.link(lamp_2)
+
+            lamp_3_data = bpy.data.lights.new("light",type='SPOT')
+            lamp_3_data.energy = 1000
+            lamp_3 = bpy.data.objects.new("Light 3",lamp_3_data)
+            lamp_3.location = (-25.53, 0, 5.6029)
+            scn.collection.objects.link(lamp_3)
+
+            # Set up the camera by placing it in the right place and rotating it the right way.
+            # The location of the camera will change based on the dimensions of the warehouse,
+            # so make sure to explore the warehouse in your blend file and choose the location
+            # /angle that make sense.
             cam1 = bpy.data.cameras.new("Camera 1")
             cam_obj1 = bpy.data.objects.new("Camera 1", cam1)
-            # max_height = 0.55
-            # max_height = 3.0
-            # # height = ctx.random.uniform(0.25, max_height)
-            # height = ctx.random.uniform(2.0, max_height)
-            # y = math.sqrt(max_height**2 - height**2)
-            # cam_obj1.location = (.15, y, height)
-            cam_obj1.location = (8.56409, -0.040545, 4.45953)
-            
+            cam_obj1.location = (3.04193, 1.47858, 9.8625)
             cam_obj1.rotation_mode = "XYZ"
-            cam_obj1.rotation_euler[0] = math.radians(266)
-            cam_obj1.rotation_euler[1] = math.radians(180)
-            cam_obj1.rotation_euler[2] = math.radians(-93.3)
-
-            # camera_constraint = cam_obj1.constraints.new(type='TRACK_TO')
-            # floor = [o for o in scn.objects if 'Plane' in o.name][0]
-            # camera_constraint.target = floor
-
+            cam_obj1.rotation_euler[0] = math.radians(77.3)
+            cam_obj1.rotation_euler[1] = math.radians(0.689)
+            cam_obj1.rotation_euler[2] = math.radians(90.1)
             scn.collection.objects.link(cam_obj1)
-
             scn.camera = cam_obj1
 
             #Initialize an AnaScene.  This configures the Blender compositor and provides object annotations and metadata.
@@ -113,7 +120,7 @@ class RenderNode(Node):
                 imageio.imsave(os.path.join(ctx.output,'preview.png'), preview)
                 return{}
             else:
-                #bpy.ops.wm.save_as_mainfile(filepath="scene4render.blend")
+                # bpy.ops.wm.save_as_mainfile(filepath="scene4render.blend")
                 render()
 
             #Prepare for annotataions: Remove link to image output file, update objects, (re)write masks

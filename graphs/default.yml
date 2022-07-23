@@ -4,75 +4,17 @@ nodes:
   Box1:
     nodeClass: Box1
 
-  # Box2:
-  #   nodeClass: Box2
-
-  # Box3:
-  #   nodeClass: Box3
-
-  # Rubik's Cube:
-  #   nodeClass: "Rubik's Cube"
-
-  # Mix Cube:
-  #   nodeClass: Mix Cube
-
-  # Bubbles:
-  #   nodeClass: Bubbles
-
-  # Yoyo:
-  #   nodeClass: Yo-yo
-
-  # Skateboard:
-  #   nodeClass: Skateboard
-
-  # MouldingClay:
-  #    nodeClass: Playdough
-
-  # ColorToys:
-  #   nodeClass: Color Variation
-  #   values: {Color: "<random>"}
-  #   links:
-  #     Generators:
-  #       - {sourceNode: Bubbles, outputPort: Bubbles Bottle Generator}
-  #       - {sourceNode: Yoyo, outputPort: Yoyo Generator}
-  #       - {sourceNode: MouldingClay, outputPort: Play Dough Generator}
-  #       - {sourceNode: Skateboard, outputPort: Skateboard Generator}
-
   ObjectPlacement:
     nodeClass: Random Placement
-    values: {Number of Objects: 2}
+    values: {Number of Objects: 5}
     links:
       Object Generators:
       - {sourceNode: Box1, outputPort: Box1 Generator}
-      # - {sourceNode: ColorToys, outputPort: Generator}
-      # - {sourceNode: "Rubik's Cube", outputPort: "Rubik's Cube Generator"}
-      # - {sourceNode: Mix Cube, outputPort: Mixed Cube Generator}
-      # - {sourceNode: Box2, outputPort: Box2 Generator}
-      # - {sourceNode: Box3, outputPort: Box3 Generator}
-      # - {sourceNode: Trial, outputPort: Trial Generator}
-      
-  # Container:
-  #   nodeClass: Container
-  #   values: {Container Type: "Light Wooden Box"}
+      Warehouse Generator: 
+        - {sourceNode: Warehouse, outputPort: Warehouse Generator}
 
   Warehouse:
     nodeClass: Warehouse
-
-  # Floor:
-  #   nodeClass: Floor
-  #   values: {Floor Type: "Granite"}
-
-  DropObjects:
-    nodeClass: Drop Objects
-    links:
-      Objects:
-        - {sourceNode: ObjectPlacement, outputPort: Objects}
-      Warehouse Generator: 
-        - {sourceNode: Warehouse, outputPort: Warehouse Generator}
-      # Container Generator:
-      #   - {sourceNode: Container, outputPort: Container Generator}
-      # Floor Generator:
-      #   - {sourceNode: Floor, outputPort: Floor Generator}
 
   Render:
     nodeClass: Render
@@ -80,6 +22,6 @@ nodes:
       Width (px): 1024
       Height (px): 1024
     links:
-      Objects of Interest:
-      - {sourceNode: DropObjects, outputPort: Objects of Interest}
+      Objects:
+      - {sourceNode: ObjectPlacement, outputPort: Objects}
     

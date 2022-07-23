@@ -15,7 +15,7 @@ schemas:
   RenderNode:
     alias: Render
     inputs:
-    - name: Objects of Interest
+    - name: Objects
       description: Objects to be annotated
     - name: Width (px)
       default: 1920
