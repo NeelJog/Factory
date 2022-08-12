@@ -20,6 +20,8 @@ schemas:
     - name: Number of Objects
       description: Number of objects to create
       default: 25
+    - name: Warehouse Generator
+      description: The warehouse in which the boxes will be placed
     outputs:
     - name: Objects
       description: A list of objects

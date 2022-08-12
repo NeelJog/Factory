@@ -6,7 +6,7 @@ nodes:
 
   ObjectPlacement:
     nodeClass: Random Placement
-    values: {Number of Objects: 7}
+    values: {Number of Objects: 4}
     links:
       Object Generators:
       - {sourceNode: Box1, outputPort: Box1 Generator}

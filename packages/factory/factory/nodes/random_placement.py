@@ -32,7 +32,7 @@ class RandomPlacementClass(Node):
 
         try:
             # First we set up the warehouse
-            warehouse_generator = CreateBranchGenerator(self.inputs["Warehouse Generator"])
+            warehouse_generator = self.inputs["Warehouse Generator"][0]
             warehouse = warehouse_generator.exec()
 
             # Set the scene to the current frame

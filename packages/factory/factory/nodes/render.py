@@ -114,7 +114,6 @@ class RenderNode(Node):
             # the input is still a list.
             objects = self.inputs["Objects"][0]
             warehouse = objects[0]
-            print("HERERERERERERE")
             # Start setting up the scene
             scn = bpy.context.scene
             bpy.ops.object.visual_transform_apply()
