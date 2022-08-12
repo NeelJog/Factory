@@ -1,0 +1,21 @@
+channel:
+  type: blender
+
+add_setup:
+  - factory.lib.setup
+
+add_packages:
+  - factory
+
+add_nodes:
+  - package: anatools
+    name: Weight
+    category: Modifiers
+    subcategory: Branch
+    color: "#B324F0"
+  - package: anatools
+    name: RandomRandint
+    alias: Random Integer
+    category: Values
+    subcategory: Generators
+    color: "#B3B3B3"

@@ -48,7 +48,7 @@ class Box1Node(Node):
 
     def exec(self):
         logger.info("Executing {}".format(self.name))
-        return {"Box1 Generator": get_blendfile_generator("example", ExampleChannelObject, "Box1")}
+        return {"Box1 Generator": get_blendfile_generator("factory", ExampleChannelObject, "Box1")}
 
 class WarehouseNode(Node):
     """
@@ -57,4 +57,4 @@ class WarehouseNode(Node):
 
     def exec(self):
         logger.info("Executing {}".format(self.name))
-        return {"Warehouse Generator": get_blendfile_generator("example", ExampleChannelObject, "Warehouse")}
+        return {"Warehouse Generator": get_blendfile_generator("factory", ExampleChannelObject, "Warehouse")}

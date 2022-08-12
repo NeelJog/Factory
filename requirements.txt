@@ -1,2 +1,2 @@
 anatools
--e ./packages/example
+-e ./packages/factory

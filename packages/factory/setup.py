@@ -1,7 +1,7 @@
 import setuptools
 
 setuptools.setup(
-    name='example',
+    name='factory',
     author='',
     author_email='',
     packages=setuptools.find_packages(),
