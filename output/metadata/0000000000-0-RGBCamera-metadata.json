@@ -2,14 +2,14 @@
     "filename": "0000000000-0-RGBCamera.png",
     "channel": "example",
     "version": "0.0.1",
-    "date": "2022-07-23T20:52:59.332539",
+    "date": "2022-08-09T05:57:38.673693",
     "objects": [
         {
-            "id": 2,
-            "type": "Box1"
+            "id": 1,
+            "type": "Warehouse"
         },
         {
-            "id": 3,
+            "id": 2,
             "type": "Box1"
         },
         {

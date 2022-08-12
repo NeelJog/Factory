@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+from turtle import right
 import bpy
 import anatools.lib.context as ctx
 from anatools.lib.node import Node
@@ -30,6 +31,78 @@ class RenderNode(Node):
     A class to represent a the Render node, a node that renders an image of the given scene.
     Executing the Render node creates an image, annotation, and metadata file.
     """
+    # Sets up 3 lamps at equidistand points in the center of the warehouse along the y axis.
+    #   Pre: The intensity of the lamps, the scene object to which the lamps are to be
+    #        added, and the warehouse object in which the lamps are going to be placed
+    #        is provided.
+    #   Post: Creates 3 lamps with the provided intensity and adds the lamps to the scene.
+    def set_up_lamps(self, intensity, scene, warehouse):
+        # There will be 3 lamps placed at 3 equidistant points in the warehouse along the 
+        # y axis. The intensity of the lights is up to the user.
+        x_axis = warehouse.root.dimensions.x
+        x_placement = (x_axis / 2) * -1 + (x_axis / 8)
+        y_axis = warehouse.root.dimensions.y
+        y_placement = [(y_axis / 2 * -1) + (y_axis / 4),
+                       0,
+                       y_axis / 2 - (y_axis / 4)]
+        z_placement = warehouse.root.dimensions.z / 2
+
+        # Make the 3 lamps with the given intensity
+        lamp_1_data = bpy.data.lights.new("light",type='SPOT')
+        lamp_1_data.energy = intensity
+        lamp_1 = bpy.data.objects.new("Light 1",lamp_1_data)
+        lamp_1.location = (x_placement, y_placement[0], z_placement)
+        scene.collection.objects.link(lamp_1)
+
+        lamp_2_data = bpy.data.lights.new("light",type='SPOT')
+        lamp_2_data.energy = intensity
+        lamp_2 = bpy.data.objects.new("Light 2",lamp_2_data)
+        lamp_2.location = (x_placement, y_placement[1], z_placement)
+        scene.collection.objects.link(lamp_2)
+
+        lamp_3_data = bpy.data.lights.new("light",type='SPOT')
+        lamp_3_data.energy = intensity
+        lamp_3 = bpy.data.objects.new("Light 3",lamp_3_data)
+        lamp_3.location = (x_placement, y_placement[2], z_placement)
+        
+        # Add the 3 lamps to the scene
+        scene.collection.objects.link(lamp_3)
+    
+    # Sets up the appropriate camera based on the "type" chosen by the user.
+    #   Pre: A valid type (Central, Left, or Right), the scene to which the camera is to be
+    #        added, and the warehouse object is provided.
+    #   Post: Based on the type passed in, the appropriate camera is set up. If the type is
+    #         left, the camera is on the left wall in the center. If the type is right, the
+    #         camera is on the right wall, and if the type is central, the camera is in the
+    #         middle of the warehouse.  
+    def set_up_camera(self, type, warehouse, scene):
+        cam1 = bpy.data.cameras.new("Camera 1")
+        cam_obj1 = bpy.data.objects.new("Camera 1", cam1)
+        cam_obj1.rotation_mode = "XYZ"
+        cam_obj1.rotation_euler[0] = math.radians(75)
+        cam_obj1.rotation_euler[1] = math.radians(0)
+
+        warehouse_height = warehouse.root.dimensions.z
+        camera_height = warehouse_height * 3 / 4
+
+        wall_to_wall = warehouse.root.dimensions.y
+        left_wall = (wall_to_wall / 2) * -1
+        right_wall = (wall_to_wall / 2)
+
+        if (type == "Central"):
+            cam_obj1.location = (0, 0, camera_height)
+            cam_obj1.rotation_euler[2] = math.radians(90)
+        elif (type == "Left"):
+            cam_obj1.location = (0, left_wall, camera_height)
+            cam_obj1.rotation_euler[2] = math.radians(65)
+        elif (type == "Right"):
+            cam_obj1.location = (0, right_wall, camera_height)
+            cam_obj1.rotation_euler[2] = math.radians(115)
+        else:
+            logger.error("Invalid Camera Selection")
+        
+        scene.collection.objects.link(cam_obj1)
+        scene.camera = cam_obj1
 
     def exec(self):
         """Execute node"""
@@ -40,7 +113,8 @@ class RenderNode(Node):
             # We do not expect more than one ObjectPlacement node to be ported to here, but 
             # the input is still a list.
             objects = self.inputs["Objects"][0]
-
+            warehouse = objects[0]
+            print("HERERERERERERE")
             # Start setting up the scene
             scn = bpy.context.scene
             bpy.ops.object.visual_transform_apply()
@@ -52,41 +126,19 @@ class RenderNode(Node):
 
             #Let's add a few lamps...This could be done in a separate node if desired.
             # The locations of the lamps will change based on the dimensions of the warehouse,
-            # so make sure to explore the warehouse in your blend file and choose locations
+            # so make sure to explore the warehouse in your blend file and choose scales
             # that make sense.
             bpy.context.scene.world.light_settings.use_ambient_occlusion = True
-
-            lamp_1_data = bpy.data.lights.new("light",type='SPOT')
-            lamp_1_data.energy = 1000
-            lamp_1 = bpy.data.objects.new("Light 1",lamp_1_data)
-            lamp_1.location = (-25.53, -8.7679, 5.6029)
-            scn.collection.objects.link(lamp_1)
-
-            lamp_2_data = bpy.data.lights.new("light",type='SPOT')
-            lamp_2_data.energy = 1000
-            lamp_2 = bpy.data.objects.new("Light 2",lamp_2_data)
-            lamp_2.location = (-25.53, 8.7679, 5.6029)
-            scn.collection.objects.link(lamp_2)
-
-            lamp_3_data = bpy.data.lights.new("light",type='SPOT')
-            lamp_3_data.energy = 1000
-            lamp_3 = bpy.data.objects.new("Light 3",lamp_3_data)
-            lamp_3.location = (-25.53, 0, 5.6029)
-            scn.collection.objects.link(lamp_3)
+            
+            intensity = int(self.inputs["Light Intensity"][0])
+            self.set_up_lamps(intensity, scn, warehouse)
 
             # Set up the camera by placing it in the right place and rotating it the right way.
             # The location of the camera will change based on the dimensions of the warehouse,
             # so make sure to explore the warehouse in your blend file and choose the location
             # /angle that make sense.
-            cam1 = bpy.data.cameras.new("Camera 1")
-            cam_obj1 = bpy.data.objects.new("Camera 1", cam1)
-            cam_obj1.location = (3.04193, 1.47858, 9.8625)
-            cam_obj1.rotation_mode = "XYZ"
-            cam_obj1.rotation_euler[0] = math.radians(77.3)
-            cam_obj1.rotation_euler[1] = math.radians(0.689)
-            cam_obj1.rotation_euler[2] = math.radians(90.1)
-            scn.collection.objects.link(cam_obj1)
-            scn.camera = cam_obj1
+            type = self.inputs["Camera"][0]
+            self.set_up_camera(type, warehouse, scn)
 
             #Initialize an AnaScene.  This configures the Blender compositor and provides object annotations and metadata.
             #To create an AnaScene we need to send a blender scene and a view layer for annotations

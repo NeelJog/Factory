@@ -42,15 +42,36 @@ class RandomPlacementClass(Node):
             # We then grab the object generator method from the inputs
             branch_generator = CreateBranchGenerator(self.inputs["Object Generators"])
 
-            # Decide how many objects we want in the scene
-            object_number = min(200, int(self.inputs["Number of Objects"][0]))
+            # Decide how many objects we want in the scene. The plus one is because the warehouse
+            # is technically one of the objects but it is by default the first object so we want to
+            # account for that
+            object_number = min(200, int(self.inputs["Number of Objects"][0]) + 1) 
             object_list = []
+
+            # Always have the first element of the object list be the warehouse.
+            object_list.append(warehouse)
             
             # Valid x/y locations where we can place boxes. This will change based on the
             # dimensions of the blend file you are working with, so make sure to explore
             # your 3D blend file and determine which x/y locations make sense in your context.
-            valid_x_locations = [-30, -28]
-            valid_y_locations = [-10, -7.5, -5, -2.5, 0, 2.5, 5, 7.5, 10]
+            x_length = warehouse.root.dimensions.x
+            y_length = warehouse.root.dimensions.y
+
+            # The "3" here depends on the dimensions of the box/object in warehouse.
+            door = int((x_length / 2) * -1 + 3)
+            half_to_door = int((x_length / 5) * -1 - 3)
+            how_many_x = abs(int((door - half_to_door) / 3))
+            valid_x_locations = [door]
+            for i in range(how_many_x - 1):
+                door += 3
+                valid_x_locations.append(door)
+            
+            left_wall = int((y_length / 2) * -1) + 3
+            how_many_y = int(y_length / 3)
+            valid_y_locations = [left_wall]
+            for i in range(how_many_y - 1):
+                left_wall += 2.5  # The 2.5 also comes from the dimension of the box.
+                valid_y_locations.append(left_wall)
 
             # Locations that have been picked so far and how many we have available in total.
             locations_picked = []
@@ -61,25 +82,34 @@ class RandomPlacementClass(Node):
                 this_object = branch_generator.exec() #Picks a new branch from the inputs and executes it
                 object_list.append(this_object)
                 #.root is the actual blender object
+                valid_z_locations = [0, this_object.root.dimensions.z]
                 
                 # Decide which x/y location to place the box in.
                 pick_x = np.random.choice(valid_x_locations)
                 pick_y = np.random.choice(valid_y_locations)
-
-                # If that particular x/y location has been picked, randomly keep choosing
+                pick_z = np.random.choice(valid_z_locations)
+                if (pick_z != 0 and (pick_x, pick_y, 0) not in locations_picked):
+                    pick_z = 0
+                # If that particular x/y/z location has been picked, randomly keep choosing
                 # new ones until we find a location that has not been picked.
-                while ((pick_x, pick_y) in locations_picked):
+                while ((pick_x, pick_y, pick_z) in locations_picked):
                     pick_x = np.random.choice(valid_x_locations)
                     pick_y = np.random.choice(valid_y_locations)
+                    if (pick_z != 0 and (pick_x, pick_y, 0) not in locations_picked):
+                        pick_z = 0
                 
                 # Add the chosen location to the list of picked locations.
-                locations_picked.append((pick_x, pick_y))
-                
+                locations_picked.append((pick_x, pick_y, pick_z))
                 # "Place" the object in the scene based on the x/y that were randomly chosen. The
                 # z value will always be zero – can be modified if we want to stack boxes.
                 this_object.root.location[0] = pick_x
                 this_object.root.location[1] = pick_y
-                this_object.root.location[2] = 0
+                this_object.root.location[2] = pick_z
+
+                # Set the rotation of the object around the z axis
+                this_object.root.rotation_mode = "XYZ"
+                z_rotation = np.random.randint(1, 360)
+                this_object.root.rotation_euler = (0, 0, math.radians(z_rotation))
 
                 # If all available locations have now already been picked, stop rendering objects.
                 if (len(locations_picked) == num_locations_available):

@@ -17,6 +17,22 @@ schemas:
     inputs:
     - name: Objects
       description: Objects to be annotated
+    - name: Camera
+      description: Which camera angle is desired
+      default: "Central"
+      select:
+        - "Central"
+        - "Left"
+        - "Right"
+    - name: Light Intensity
+      description: The intensity of the lights in the warehouse
+      default: 1000
+      select:
+        - 500
+        - 1500
+        - 2000
+        - 2500
+        - 3000
     - name: Width (px)
       default: 1920
       description: Desired image width
