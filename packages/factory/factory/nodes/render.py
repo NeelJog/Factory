@@ -93,10 +93,10 @@ class RenderNode(Node):
             cam_obj1.location = (0, 0, camera_height)
             cam_obj1.rotation_euler[2] = math.radians(90)
         elif (type == "Left"):
-            cam_obj1.location = (0, left_wall, camera_height)
+            cam_obj1.location = (0, left_wall + 2, camera_height)
             cam_obj1.rotation_euler[2] = math.radians(65)
         elif (type == "Right"):
-            cam_obj1.location = (0, right_wall, camera_height)
+            cam_obj1.location = (0, right_wall - 2, camera_height)
             cam_obj1.rotation_euler[2] = math.radians(115)
         else:
             logger.error("Invalid Camera Selection")
